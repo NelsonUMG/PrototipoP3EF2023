@@ -67,6 +67,7 @@ int codigoAplicacion=5006;
             dato[5] = Integer.toString(listadoSala.get(i).getPuntos());
              dato[6] = Integer.toString(listadoSala.get(i).getPuntos());
             modelo.addRow(dato);
+            //1
         }       
     }
 
