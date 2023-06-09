@@ -5,7 +5,7 @@
  */
 package Peliculas.Modelo;
 
-import Bancos.Controlador.clsBancoExterno;
+import Peliculas.Controlador.clsPeliculasCines;
 import Seguridad.Modelo.Conexion;
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,40 +18,37 @@ import java.util.List;
 
 //Hecho por Carlos González, 9959-20-6164
 
-public class daoBancoExterno {
+public class daoPeliculasCines {
 
-    private static final String SQL_SELECT = "SELECT codBanco, banNombre, banPaís, tipModId, estatus FROM tbl_bancoExterno";
-    private static final String SQL_INSERT = "INSERT INTO tbl_bancoExterno(codBanco, banNombre, banPaís, tipModId, estatus) VALUES(?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_bancoExterno SET banNombre=?, banPaís=?,  tipModId=?, estatus=?  WHERE codBanco = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_bancoExterno WHERE codBanco=?";
-    private static final String SQL_SELECT_NOMBRE = "SELECT codBanco, banNombre, banPaís, tipModId, estatus  FROM tbl_bancoExterno WHERE banNombre = ?";
-    private static final String SQL_SELECT_ID = "SELECT codBanco, banNombre, banPaís, tipModId, estatus  FROM tbl_bancoExterno WHERE codBanco = ?";     
+private static final String SQL_SELECT = "SELECT idCines, Nombre, Dirección FROM tbl_Cines";
+private static final String SQL_INSERT = "INSERT INTO tbl_Cines(Nombre, Dirección) VALUES(?, ?)";
+private static final String SQL_UPDATE = "UPDATE tbl_Cines SET Nombre=?, Dirección=? WHERE idCines = ?";
+private static final String SQL_DELETE = "DELETE FROM tbl_Cines WHERE idCines=?";
+private static final String SQL_SELECT_NOMBRE = "SELECT idCines, Nombre, Dirección FROM tbl_Cines WHERE Nombre = ?";
+private static final String SQL_SELECT_ID = "SELECT idCines, Nombre, Dirección FROM tbl_Cines WHERE idCines = ?";     
 
 
 
-   public List<clsBancoExterno> consultaBanco() {
+   public List<clsPeliculasCines> consultaCine() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<clsBancoExterno> bancos = new ArrayList<>();
+        List<clsPeliculasCines> cines = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("codBanco");
-                String nombre = rs.getString("banNombre");
-                String pais = rs.getString("banPaís");
-                int tipoMond = rs.getInt ("tipModId");
-                String Estatus =rs.getString("estatus");
-                clsBancoExterno banco = new clsBancoExterno();
-                banco.setCodigoBanco(id);
-                banco.setNombreBanco(nombre);
-                banco.setPaisBanco(pais);
-                banco.setTipoMonedaId(tipoMond);
-                banco.setEstatus(Estatus);
-                bancos.add(banco);
+                int id = rs.getInt("idCines");
+                String nombre = rs.getString("Nombre");
+                String ciness = rs.getString("Dirección");
+                clsPeliculasCines cine = new clsPeliculasCines();
+                cine.setIdCines(id);
+                cine.setNombreCine(nombre);
+                cine.setDireccionCine(ciness);
+            
+                cines.add(cine);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -60,23 +57,21 @@ public class daoBancoExterno {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return bancos;
+        return cines;
     }
 
 
-     public int ingresarBancoExterno (clsBancoExterno banco) {
+     public int ingresarCine(clsPeliculasCines cine) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setInt(1, banco.getCodigoBanco());
-            stmt.setString(2, banco.getNombreBanco());
-            stmt.setString(3, banco.getPaisBanco());
-            stmt.setInt(4, banco.getTipoMonedaId());
-            stmt.setString(5, banco.getEstatus());
-            
+            stmt.setInt(1, cine.getIdCines());
+            stmt.setString(2, cine.getNombreCine());
+            stmt.setString(3, cine.getDireccionCine());
+       
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
             System.out.println("Registros afectados:" + rows);
@@ -90,7 +85,7 @@ public class daoBancoExterno {
         return rows;
     }
 
-    public int actualizaBancoExterno (clsBancoExterno banco) {
+    public int actualizaCine (clsPeliculasCines cine) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -98,12 +93,9 @@ public class daoBancoExterno {
             conn = Conexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, banco.getNombreBanco());
-            stmt.setString(2, banco.getPaisBanco());
-            stmt.setInt(3, banco.getTipoMonedaId());
-            stmt.setString(4, banco.getEstatus());
-            stmt.setInt(5, banco.getCodigoBanco());
-            
+            stmt.setString(1, cine.getNombreCine());
+            stmt.setString(2, cine.getDireccionCine());
+            stmt.setInt(3, cine.getIdCines());
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
 
@@ -117,7 +109,7 @@ public class daoBancoExterno {
         return rows;
     }
 
-    public int borrarBancoExterno(clsBancoExterno banco) {
+    public int borrarCine(clsPeliculasCines cine) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -126,7 +118,7 @@ public class daoBancoExterno {
             conn = Conexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, banco.getCodigoBanco());
+            stmt.setInt(1, cine.getIdCines());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -139,30 +131,28 @@ public class daoBancoExterno {
         return rows;
     }
 
-    public clsBancoExterno consultaBancoPorNombre(clsBancoExterno banco) {
+    public clsPeliculasCines consultaCinePorNombre(clsPeliculasCines cine) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + banco);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + cine);
             stmt = conn.prepareStatement(SQL_SELECT_NOMBRE);
             //stmt.setInt(1, moneda.getIdMoneda());            
-            stmt.setString(1, banco.getNombreBanco());
+            stmt.setString(1, cine.getNombreCine());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("codBanco");
-                String nombre = rs.getString("banNombre");
-                String pais = rs.getString("banPaís");
-                int tipoMond = rs.getInt("tipModId");
-                String Estatus = rs.getString("estatus");
+                int id = rs.getInt("idCines");
+                String nombre = rs.getString("Nombre");
+                String Direccion = rs.getString("Dirección");
+           
                 //moneda = new clsTipoMoneda();
-                banco.setCodigoBanco(id);
-                banco.setNombreBanco(nombre);
-                banco.setPaisBanco(pais);
-                banco.setTipoMonedaId(tipoMond);
-                banco.setEstatus(Estatus);
-                System.out.println(" registro consultado: " + banco);                
+                cine.setIdCines(id);
+                cine.setNombreCine(nombre);
+                cine.setDireccionCine(Direccion);
+  
+                System.out.println(" registro consultado: " + cine);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -174,32 +164,28 @@ public class daoBancoExterno {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return banco;
+        return cine;
     }
-    public clsBancoExterno consultaBancoPorId(clsBancoExterno banco) {
+    public clsPeliculasCines consultaCinePorId(clsPeliculasCines cine) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + banco);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + cine);
             stmt = conn.prepareStatement(SQL_SELECT_ID);
-            stmt.setInt(1, banco.getCodigoBanco());            
+            stmt.setInt(1, cine.getIdCines());            
             //stmt.setString(1, moneda.getTipMondNombre());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("codBanco");
-                String nombre = rs.getString("banNombre");
-                String pais = rs.getString("banPaís");
-                int tipoMond = rs.getInt("tipModId");
-                String Estatus = rs.getString("estatus");
+                int id = rs.getInt("idCines");
+                String nombre = rs.getString("Nombre");
+                String Direccion = rs.getString("Direccion");
                 //moneda = new clsTipoMoneda();
-                banco.setCodigoBanco(id);
-                banco.setNombreBanco(nombre);
-                banco.setPaisBanco(pais);
-                banco.setTipoMonedaId(tipoMond);
-                banco.setEstatus(Estatus);
-                System.out.println(" registro consultado: " + banco);                
+                cine.setIdCines(id);
+                cine.setNombreCine(nombre);
+                cine.setDireccionCine(Direccion);
+                System.out.println(" registro consultado: " + cine);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -211,6 +197,6 @@ public class daoBancoExterno {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return banco;
+        return cine;
     }    
 }
