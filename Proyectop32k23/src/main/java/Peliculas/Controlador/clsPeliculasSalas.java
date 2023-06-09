@@ -18,6 +18,7 @@ import Peliculas.Modelo.daoPeliculasSalas;
  */
 public class clsPeliculasSalas {
     private int IdSalas;
+    private int IdCines;
     private int fkCines;
     private String Descripcion;
     private String formatoPeli;
@@ -27,8 +28,9 @@ public class clsPeliculasSalas {
     public clsPeliculasSalas() {
     }
 
-    public clsPeliculasSalas(int IdSalas, int fkCines, String Descripcion, String formatoPeli, int Puntos, double PrecioSala) {
+    public clsPeliculasSalas(int IdSalas, int IdCines, int fkCines, String Descripcion, String formatoPeli, int Puntos, double PrecioSala) {
         this.IdSalas = IdSalas;
+        this.IdCines = IdCines;
         this.fkCines = fkCines;
         this.Descripcion = Descripcion;
         this.formatoPeli = formatoPeli;
@@ -42,6 +44,14 @@ public class clsPeliculasSalas {
 
     public void setIdSalas(int IdSalas) {
         this.IdSalas = IdSalas;
+    }
+
+    public int getIdCines() {
+        return IdCines;
+    }
+
+    public void setIdCines(int IdCines) {
+        this.IdCines = IdCines;
     }
 
     public int getFkCines() {
@@ -84,44 +94,43 @@ public class clsPeliculasSalas {
         this.PrecioSala = PrecioSala;
     }
 
+  
+
+
  
 
     
     @Override
     public String toString() {
-        return "clsPeliculasSalas{" + "IdSalas =" + IdSalas   + ", fkCines=" + fkCines + ", Descripcion=" + Descripcion + ", formatoPeli  =" + formatoPeli + ", Puntos  =" + Puntos + ", PrecioSala= " + PrecioSala + '}';
+        return "clsPeliculasSalas{" + "IdSalas =" + IdSalas   + ",IdCines= " + IdCines +", fkCines=" + fkCines + ", Descripcion=" + Descripcion + ", formatoPeli  =" + formatoPeli + ", Puntos  =" + Puntos + ", PrecioSala= " + PrecioSala + '}';
     }
     //Metodos de acceso a la capa controlador
-    public clsPeliculasSalas getBuscarInformacionBancoPorNombre(clsPeliculasSalas banco)
+ 
+    public clsPeliculasSalas getBuscarInformacionSalaPorId(clsPeliculasSalas Sala)
     {
-        daoPeliculasSalas daobancoexterno = new daoPeliculasSalas();
-        return daobancoexterno.consultaBancoPorNombre(banco);
-    }
-    public clsPeliculasSalas getBuscarInformacionBancoPorId(clsPeliculasSalas banco)
-    {
-        daoPeliculasSalas daobancoexterno = new daoPeliculasSalas();
-        return daobancoexterno.consultaBancoPorId(banco);
+        daoPeliculasSalas daopeliculassalas  = new daoPeliculasSalas();
+        return daopeliculassalas .consultarSalaPorId(Sala);
     }    
-    public List<clsPeliculasSalas> getListadoBancosExternos()
+    public List<clsPeliculasSalas> getListadoSala()
     {
-        daoPeliculasSalas daobancoexterno = new daoPeliculasSalas();
-        List<clsPeliculasSalas> listadoBancosExternos = daobancoexterno.consultaBanco();
-        return listadoBancosExternos;
+        daoPeliculasSalas daopeliculassalas  = new daoPeliculasSalas();
+        List<clsPeliculasSalas> listadoSalas =daopeliculassalas.consultaSala();
+        return listadoSalas;
     }
-    public int setBorrarBancoExterno(clsPeliculasSalas banco)
+    public int setBorrarSala(clsPeliculasSalas sala)
     {
-        daoPeliculasSalas daobancoexterno = new daoPeliculasSalas();
-        return daobancoexterno.borrarBancoExterno(banco);
+        daoPeliculasSalas daopeliculassalas  = new daoPeliculasSalas();
+        return daopeliculassalas.borrarSala(sala);
     }          
-    public int setIngresarBancoExterno(clsPeliculasSalas banco)
+    public int setIngresarSala(clsPeliculasSalas sala)
     {
-        daoPeliculasSalas daobancoexterno = new daoPeliculasSalas();
-        return daobancoexterno.ingresarBancoExterno(banco);
+        daoPeliculasSalas daopeliculassalas  = new daoPeliculasSalas();
+        return daopeliculassalas.ingresarSala(sala);
     }              
-    public int setModificarBancoExterno(clsPeliculasSalas banco)
+    public int setModificarSala(clsPeliculasSalas sala)
     {
-        daoPeliculasSalas daobancoexterno = new daoPeliculasSalas();
-        return daobancoexterno.actualizaBancoExterno(banco);
+        daoPeliculasSalas daopeliculassalas  = new daoPeliculasSalas();
+        return daopeliculassalas.actualizarSala(sala);
     }              
 
 }
