@@ -43,28 +43,6 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="label5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="label3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="label7" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="label6" min="-2" max="-2" attributes="0"/>
-                          <Component id="label8" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtPais" max="32767" attributes="0"/>
-                          <Component id="txtNombre" pref="271" max="32767" attributes="0"/>
-                          <Component id="txtCodigo" alignment="1" max="32767" attributes="0"/>
-                          <Component id="cbTipoMoneda" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="rbHabilitado" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="rbDeshabilitado" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -95,7 +73,57 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="label5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtPuntos" min="-2" pref="271" max="-2" attributes="0"/>
+                                  <Component id="txtFormato" min="-2" pref="271" max="-2" attributes="0"/>
+                                  <Component id="txtPrecioSala" alignment="0" min="-2" pref="271" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="label9" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="label7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cbCines" min="-2" pref="271" max="-2" attributes="0"/>
+                                  <Component id="txtfkCines" min="-2" pref="193" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="label3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <Component id="txtDescripcion" min="-2" pref="271" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="label10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="label6" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                                      <Component id="txtIdSala" min="-2" pref="271" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="label11" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -106,10 +134,10 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="label1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="294" pref="528" max="32767" attributes="0"/>
+                      <EmptySpace min="294" pref="513" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="jScrollPane1" pref="612" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="597" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -122,30 +150,39 @@
               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="label6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="label3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtPais" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="label5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtIdSala" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="label7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbTipoMoneda" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbCines" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="label8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="rbHabilitado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="rbDeshabilitado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="label9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtfkCines" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="151" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="label3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="label5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtFormato" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="label10" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPuntos" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="label11" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPrecioSala" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnRegistrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -168,7 +205,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="label1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="303" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnActualizar" min="-2" max="-2" attributes="0"/>
@@ -223,12 +260,12 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Nombre Banco"/>
+        <Property name="text" type="java.lang.String" value="Descripci&#xf3;n"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtbuscado">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNombre">
+    <Component class="javax.swing.JTextField" name="txtDescripcion">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="12" style="0"/>
@@ -242,7 +279,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDescripcionActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLimpiar">
@@ -296,7 +333,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txtPais">
+    <Component class="javax.swing.JTextField" name="txtFormato">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="12" style="0"/>
@@ -315,7 +352,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Pa&#xed;s del Banco"/>
+        <Property name="text" type="java.lang.String" value="Formato Pel&#xed;cula"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
@@ -347,10 +384,10 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tipo de moneda"/>
+        <Property name="text" type="java.lang.String" value="Id Cines"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCodigo">
+    <Component class="javax.swing.JTextField" name="txtIdSala">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="12" style="0"/>
@@ -364,7 +401,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodigoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdSalaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="label6">
@@ -372,43 +409,16 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="C&#xf3;digo Banco"/>
+        <Property name="text" type="java.lang.String" value="Id Sala"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cbTipoMoneda">
+    <Component class="javax.swing.JComboBox" name="cbCines">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbTipoMonedaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbCinesActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="label8">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="12" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Estatus"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="rbHabilitado">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="estatus"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Habilitado"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbHabilitadoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="rbDeshabilitado">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="estatus"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Deshabilitado"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnReportes">
       <Properties>
@@ -417,6 +427,75 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReportesActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtfkCines">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="12" style="0"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+            <MatteColorBorder bottom="1" left="0" right="0" top="0">
+              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+            </MatteColorBorder>
+          </Border>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtfkCinesActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="label9">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="FkCines"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPuntos">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="12" style="0"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+            <MatteColorBorder bottom="1" left="0" right="0" top="0">
+              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+            </MatteColorBorder>
+          </Border>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="label10">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Puntos"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPrecioSala">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="12" style="0"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+            <MatteColorBorder bottom="1" left="0" right="0" top="0">
+              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+            </MatteColorBorder>
+          </Border>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="label11">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="PrecioSala"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

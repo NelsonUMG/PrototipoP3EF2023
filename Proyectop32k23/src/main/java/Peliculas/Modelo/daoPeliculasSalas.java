@@ -185,6 +185,5 @@ public clsPeliculasSalas consultarSalaPorId(clsPeliculasSalas sala) {
 
     return sala;
 }
-
 }
 

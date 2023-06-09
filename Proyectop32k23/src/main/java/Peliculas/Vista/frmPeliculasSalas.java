@@ -9,10 +9,8 @@ package Peliculas.Vista;
 //Hecho por Carlos González, 9959-20-6164
 
 import Seguridad.Controlador.clsBitacora;
-import Bancos.Controlador.clsReportes;
-import Bancos.Controlador.clsBancoExterno;
-import Bancos.Controlador.clsTipoMoneda;
-import Bancos.Modelo.daoTipoMoneda;
+import Peliculas.Controlador.clsReportes;
+import Peliculas.Controlador.clsPeliculasSalas;
 import Seguridad.Controlador.clsUsuarioConectado;
 import java.awt.Component;
 import java.util.List;
@@ -32,37 +30,42 @@ public class frmPeliculasSalas extends javax.swing.JInternalFrame {
 int codigoAplicacion=5006;
 
     public void llenadoDeCombos() {
-        clsTipoMoneda moneda = new clsTipoMoneda();
-        List<clsTipoMoneda> listaTipoMonedas = moneda.getListadoMonedas();
-        cbTipoMoneda.setAlignmentX(Component.CENTER_ALIGNMENT);
-        cbTipoMoneda.addItem("Seleccionar...");
-        for (int i = 0; i < listaTipoMonedas.size(); i++) {
-            clsTipoMoneda tipoMoneda = listaTipoMonedas.get(i);
-            String item = tipoMoneda.getTipModId() + " - " + tipoMoneda.getTipMondAbreviacion();
-            cbTipoMoneda.addItem(item);
+        clsPeliculasSalas sala = new clsPeliculasSalas();
+        List<clsPeliculasSalas> listaSala = sala.getListadoSala();
+        cbCines.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cbCines.addItem("Seleccionar...");
+        for (int i = 0; i < listaSala.size(); i++) {
+            clsPeliculasSalas salas = listaSala.get(i);
+            int idSalas = salas.getIdSalas(); 
+        String item = String.valueOf(idSalas); 
+        cbCines.addItem(item);
         }
     }
 
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID");
-        modelo.addColumn("Nombre Banco");
-        modelo.addColumn("País Banco");
-        modelo.addColumn("Tipo de Moneda");
-        modelo.addColumn("Estatus");
+        modelo.addColumn("IDSala");
+        modelo.addColumn("ID Cines");
+        modelo.addColumn("fkCines");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Formato Peli");
+        modelo.addColumn("Puntos");
+        modelo.addColumn("PrecioSala");
 
-        clsBancoExterno banco = new clsBancoExterno();
+        clsPeliculasSalas sala = new clsPeliculasSalas();
         //VendedorDAO vendedorDAO = new VendedorDAO();
 
-        List<clsBancoExterno> listadoBanco = banco.getListadoBancosExternos();
+        List<  clsPeliculasSalas> listadoSala = sala.getListadoSala();
         tablaBancoExterno.setModel(modelo);
-        String[] dato = new String[5];
-        for (int i = 0; i < listadoBanco.size(); i++) {
-            dato[0] = Integer.toString(listadoBanco.get(i).getCodigoBanco());
-            dato[1] = listadoBanco.get(i).getNombreBanco();
-            dato[2] = listadoBanco.get(i).getPaisBanco();
-            dato[3] = Integer.toString(listadoBanco.get(i).getTipoMonedaId());
-            dato[4] = listadoBanco.get(i).getEstatus().equalsIgnoreCase("T") ? "Habilitado" : "Deshabilitado";
+        String[] dato = new String[7];
+        for (int i = 0; i < listadoSala.size(); i++) {
+            dato[0] = Integer.toString(listadoSala.get(i).getIdSalas());
+            dato[1] = Integer.toString(listadoSala.get(i).getIdCines());
+            dato[2] = Integer.toString(listadoSala.get(i).getFkCines());
+            dato[3] = listadoSala.get(i).getDescripcion();
+            dato[4] = listadoSala.get(i).getFormatoPeli();
+            dato[5] = Integer.toString(listadoSala.get(i).getPuntos());
+             dato[6] = Integer.toString(listadoSala.get(i).getPuntos());
             modelo.addRow(dato);
         }       
     }
@@ -92,23 +95,26 @@ int codigoAplicacion=5006;
         btnModificar = new javax.swing.JButton();
         label3 = new javax.swing.JLabel();
         txtbuscado = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaBancoExterno = new javax.swing.JTable();
-        txtPais = new javax.swing.JTextField();
+        txtFormato = new javax.swing.JTextField();
         label5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         label4 = new javax.swing.JLabel();
         btnActualizar = new javax.swing.JButton();
         label7 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
+        txtIdSala = new javax.swing.JTextField();
         label6 = new javax.swing.JLabel();
-        cbTipoMoneda = new javax.swing.JComboBox<>();
-        label8 = new javax.swing.JLabel();
-        rbHabilitado = new javax.swing.JRadioButton();
-        rbDeshabilitado = new javax.swing.JRadioButton();
+        cbCines = new javax.swing.JComboBox<>();
         btnReportes = new javax.swing.JButton();
+        txtfkCines = new javax.swing.JTextField();
+        label9 = new javax.swing.JLabel();
+        txtPuntos = new javax.swing.JTextField();
+        label10 = new javax.swing.JLabel();
+        txtPrecioSala = new javax.swing.JTextField();
+        label11 = new javax.swing.JLabel();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -152,13 +158,13 @@ int codigoAplicacion=5006;
         });
 
         label3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label3.setText("Nombre Banco");
+        label3.setText("Descripción");
 
-        txtNombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+        txtDescripcion.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtDescripcion.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
+                txtDescripcionActionPerformed(evt);
             }
         });
 
@@ -172,11 +178,11 @@ int codigoAplicacion=5006;
         tablaBancoExterno.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jScrollPane1.setViewportView(tablaBancoExterno);
 
-        txtPais.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtPais.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtFormato.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtFormato.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         label5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label5.setText("País del Banco");
+        label5.setText("Formato Película");
 
         jButton2.setText("Ayuda");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -196,38 +202,24 @@ int codigoAplicacion=5006;
         });
 
         label7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label7.setText("Tipo de moneda");
+        label7.setText("Id Cines");
 
-        txtCodigo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtCodigo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+        txtIdSala.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtIdSala.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtIdSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
+                txtIdSalaActionPerformed(evt);
             }
         });
 
         label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label6.setText("Código Banco");
+        label6.setText("Id Sala");
 
-        cbTipoMoneda.addActionListener(new java.awt.event.ActionListener() {
+        cbCines.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbTipoMonedaActionPerformed(evt);
+                cbCinesActionPerformed(evt);
             }
         });
-
-        label8.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label8.setText("Estatus");
-
-        estatus.add(rbHabilitado);
-        rbHabilitado.setText("Habilitado");
-        rbHabilitado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbHabilitadoActionPerformed(evt);
-            }
-        });
-
-        estatus.add(rbDeshabilitado);
-        rbDeshabilitado.setText("Deshabilitado");
 
         btnReportes.setText("Reportes");
         btnReportes.addActionListener(new java.awt.event.ActionListener() {
@@ -236,30 +228,35 @@ int codigoAplicacion=5006;
             }
         });
 
+        txtfkCines.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtfkCines.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtfkCines.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfkCinesActionPerformed(evt);
+            }
+        });
+
+        label9.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label9.setText("FkCines");
+
+        txtPuntos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtPuntos.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+
+        label10.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label10.setText("Puntos");
+
+        txtPrecioSala.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtPrecioSala.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+
+        label11.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label11.setText("PrecioSala");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label5)
-                            .addComponent(label3)
-                            .addComponent(label7)
-                            .addComponent(label6)
-                            .addComponent(label8))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPais)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cbTipoMoneda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(rbHabilitado)
-                                .addGap(18, 18, 18)
-                                .addComponent(rbDeshabilitado))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -283,7 +280,44 @@ int codigoAplicacion=5006;
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                                     .addComponent(btnReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 50, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(label5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFormato, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPrecioSala, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(label9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(label7)
+                                        .addGap(54, 54, 54)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbCines, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtfkCines, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(label3)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(label10)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(label6)
+                                        .addGap(61, 61, 61)
+                                        .addComponent(txtIdSala, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(label11))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -291,9 +325,9 @@ int codigoAplicacion=5006;
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label1)
-                        .addGap(294, 528, Short.MAX_VALUE))
+                        .addGap(294, 513, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -302,25 +336,32 @@ int codigoAplicacion=5006;
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label6)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label3)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label5))
+                    .addComponent(txtIdSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label7)
-                    .addComponent(cbTipoMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbCines, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label8)
-                    .addComponent(rbHabilitado)
-                    .addComponent(rbDeshabilitado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                    .addComponent(label9)
+                    .addComponent(txtfkCines, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label3)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label5)
+                    .addComponent(txtFormato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label10)
+                    .addComponent(txtPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label11)
+                    .addComponent(txtPrecioSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnEliminar)
@@ -339,7 +380,7 @@ int codigoAplicacion=5006;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(label1)
-                .addGap(4, 4, 4)
+                .addGap(8, 8, 8)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnActualizar)
@@ -352,9 +393,9 @@ int codigoAplicacion=5006;
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         int registrosBorrados=0;
-        clsBancoExterno banco = new clsBancoExterno();
-        banco.setCodigoBanco(Integer.parseInt(txtbuscado.getText()));
-        registrosBorrados=banco.setBorrarBancoExterno(banco);
+        clsPeliculasSalas sala = new clsPeliculasSalas();
+        sala.setIdSalas(Integer.parseInt(txtbuscado.getText()));
+        registrosBorrados=sala.setBorrarSala(sala);
         JOptionPane.showMessageDialog(null, "Registro Borrado\n", 
                     "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
         llenadoDeTablas();
@@ -368,23 +409,16 @@ int codigoAplicacion=5006;
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
-            clsBancoExterno banco = new clsBancoExterno();
-            banco.setCodigoBanco(Integer.parseInt(txtCodigo.getText()));
-            banco.setNombreBanco(txtNombre.getText());
-            banco.setPaisBanco(txtPais.getText());
-            String selectedItem = cbTipoMoneda.getSelectedItem().toString();
-            int itemId = Integer.parseInt(selectedItem.split(" - ")[0]);
-            banco.setTipoMonedaId(itemId);
-            
-            int contador = 0;
-            String estatusBanco = rbHabilitado.isSelected() ? "T" : (rbDeshabilitado.isSelected() ? "F" : "");
-            if (!estatusBanco.isEmpty()) {
-                contador++;
-                banco.setEstatus(estatusBanco);
-            }
-            if (contador == 1) {
-                // Los dos botones de cada ButtonGroup están seleccionados
-                banco.setIngresarBancoExterno(banco);
+             clsPeliculasSalas sala = new clsPeliculasSalas();
+            sala.setIdSalas(Integer.parseInt(txtIdSala.getText()));
+            sala.setIdCines(Integer.parseInt(cbCines.getSelectedItem().toString()));
+            sala.setFkCines(Integer.parseInt(txtfkCines.getText()));
+            sala.setDescripcion(txtDescripcion.getText());
+            sala.setFormatoPeli(txtFormato.getText());
+            sala.setPuntos(Integer.parseInt(txtPuntos.getText()));
+            sala.setPrecioSala(Double.parseDouble(txtPrecioSala.getText()));
+                 // Los dos botones de cada ButtonGroup están seleccionados
+                sala.setIngresarSala(sala);
                 JOptionPane.showMessageDialog(null, "Registro Ingresado\n", 
                             "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);
                 int resultadoBitacora=0;
@@ -392,35 +426,37 @@ int codigoAplicacion=5006;
                 resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "INS");
                 llenadoDeTablas();
                 limpiarTextos();
-            } else {
-                // No se cumple la condición de selección de dos botones
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un estatus.");
-            }
+       
+            
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
             // TODO add your handling code here:
-        clsBancoExterno banco = new clsBancoExterno();
+         clsPeliculasSalas sala = new  clsPeliculasSalas();
         //usuario.setNombreUsuario(txtbuscado.getText());        
-        banco.setCodigoBanco(Integer.parseInt(txtbuscado.getText()));        
-        banco = banco.getBuscarInformacionBancoPorId(banco);
-        System.out.println("Banco retornado:" + banco);        
-        txtNombre.setText(banco.getNombreBanco());
-        txtPais.setText(banco.getPaisBanco());
+        sala.setIdSalas(Integer.parseInt(txtbuscado.getText()));        
+        sala = sala.getBuscarInformacionSalaPorId(sala);
+        System.out.println("Banco retornado:" + sala); 
+          txtfkCines.setText(String.valueOf(sala.getFkCines()));
+           txtDescripcion.setText(sala.getDescripcion());
+           txtFormato.setText(sala.getFormatoPeli());
+           txtPuntos.setText(String.valueOf(sala.getPuntos()));
+           txtPrecioSala.setText(String.valueOf(sala.getPrecioSala()));
+     
+   
         
-        int tipoMonedaId = banco.getTipoMonedaId();
-        for (int i = 1; i < cbTipoMoneda.getItemCount(); i++) {
-            String item = cbTipoMoneda.getItemAt(i).toString();
-            int itemId = Integer.parseInt(item.split(" - ")[0]); // Obtener el ID del item
+        int tipoMonedaId = sala.getIdCines();
+        for (int i = 1; i < cbCines.getItemCount(); i++) {
+            String item = cbCines.getItemAt(i).toString();
+            int itemId = Integer.parseInt(item.split("")[0]); // Obtener el ID del item
             
             if (itemId == tipoMonedaId) {
-                cbTipoMoneda.setSelectedIndex(i);
+                cbCines.setSelectedIndex(i);
                 break;
             }
         }
         
-        rbHabilitado.setSelected(banco.getEstatus().equals("T"));
-        rbDeshabilitado.setSelected(banco.getEstatus().equals("F"));
+
         
         int resultadoBitacora=0;
         clsBitacora bitacoraRegistro = new clsBitacora();
@@ -429,23 +465,18 @@ int codigoAplicacion=5006;
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
-        clsBancoExterno banco = new clsBancoExterno();
-        banco.setCodigoBanco(Integer.parseInt(txtbuscado.getText()));
-        banco.setNombreBanco(txtNombre.getText());
-        banco.setPaisBanco(txtPais.getText());
-        //banco.setTipoMonedaId(Integer.parseInt(cbTipoMoneda.getSelectedItem().toString()));
-        String selectedItem = cbTipoMoneda.getSelectedItem().toString();
-        String id = selectedItem.split(" - ")[0]; // Obtiene solo la ID
-        banco.setTipoMonedaId(Integer.parseInt(id));
+         clsPeliculasSalas sala = new  clsPeliculasSalas();
+        sala.setIdSalas(Integer.parseInt(txtbuscado.getText()));
+            sala.setIdCines(Integer.parseInt(cbCines.getSelectedItem().toString()));
+            sala.setFkCines(Integer.parseInt(txtfkCines.getText()));
+            sala.setDescripcion(txtDescripcion.getText());
+            sala.setFormatoPeli(txtFormato.getText());
+            sala.setPuntos(Integer.parseInt(txtPuntos.getText()));
+            sala.setPrecioSala(Double.parseDouble(txtPrecioSala.getText()));
         
-        int contador = 0;
-        String estatusBanco = rbHabilitado.isSelected() ? "T" : (rbDeshabilitado.isSelected() ? "F" : "");
-        if (!estatusBanco.isEmpty()) {
-            contador++;
-            banco.setEstatus(estatusBanco);
-        }
-        if (contador == 1) {
-            banco.setModificarBancoExterno(banco);
+      
+
+            sala.setModificarSala(sala);
             JOptionPane.showMessageDialog(null, "Registro Modificado\n", 
                         "Información del Sistema", JOptionPane.INFORMATION_MESSAGE);        
             llenadoDeTablas();
@@ -454,11 +485,10 @@ int codigoAplicacion=5006;
             clsBitacora bitacoraRegistro = new clsBitacora();
             resultadoBitacora = bitacoraRegistro.setIngresarBitacora(clsUsuarioConectado.getIdUsuario(), codigoAplicacion, "UPD");
 
-            limpiarTextos();
-        } else {
+
             // No se cumple la condición de selección de botones
             JOptionPane.showMessageDialog(null, "Debe seleccionar un estatus.");
-        }
+        
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -468,11 +498,11 @@ int codigoAplicacion=5006;
     }//GEN-LAST:event_btnLimpiarActionPerformed
     public void limpiarTextos()
     {
-        txtCodigo.setText("");
-        txtNombre.setText("");
-        txtPais.setText("");
+        txtIdSala.setText("");
+        txtDescripcion.setText("");
+        txtFormato.setText("");
         txtbuscado.setText("");
-        cbTipoMoneda.setSelectedIndex(0);
+        cbCines.setSelectedIndex(0);
         estatus.clearSelection();
 
     }
@@ -511,17 +541,13 @@ int codigoAplicacion=5006;
         llenadoDeTablas();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
+    }//GEN-LAST:event_txtDescripcionActionPerformed
 
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+    private void txtIdSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdSalaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
-
-    private void rbHabilitadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbHabilitadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbHabilitadoActionPerformed
+    }//GEN-LAST:event_txtIdSalaActionPerformed
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
         // TODO add your handling code here:
@@ -531,9 +557,13 @@ int codigoAplicacion=5006;
         reporte.generateReport();
     }//GEN-LAST:event_btnReportesActionPerformed
 
-    private void cbTipoMonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoMonedaActionPerformed
+    private void cbCinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCinesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbTipoMonedaActionPerformed
+    }//GEN-LAST:event_cbCinesActionPerformed
+
+    private void txtfkCinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfkCinesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfkCinesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -544,25 +574,28 @@ int codigoAplicacion=5006;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnReportes;
-    private javax.swing.JComboBox<String> cbTipoMoneda;
+    private javax.swing.JComboBox<String> cbCines;
     private javax.swing.ButtonGroup estatus;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label1;
+    private javax.swing.JLabel label10;
+    private javax.swing.JLabel label11;
     private javax.swing.JLabel label3;
     private javax.swing.JLabel label4;
     private javax.swing.JLabel label5;
     private javax.swing.JLabel label6;
     private javax.swing.JLabel label7;
-    private javax.swing.JLabel label8;
+    private javax.swing.JLabel label9;
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lbusu;
-    private javax.swing.JRadioButton rbDeshabilitado;
-    private javax.swing.JRadioButton rbHabilitado;
     private javax.swing.JTable tablaBancoExterno;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPais;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtFormato;
+    private javax.swing.JTextField txtIdSala;
+    private javax.swing.JTextField txtPrecioSala;
+    private javax.swing.JTextField txtPuntos;
     private javax.swing.JTextField txtbuscado;
+    private javax.swing.JTextField txtfkCines;
     // End of variables declaration//GEN-END:variables
 }

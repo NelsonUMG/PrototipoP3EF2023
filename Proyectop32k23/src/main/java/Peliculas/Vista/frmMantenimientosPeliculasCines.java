@@ -49,7 +49,6 @@ int codigoAplicacion=7006;
             modelo.addRow(dato);
         }       
     }
-
     public frmMantenimientosPeliculasCines() {
         initComponents();
         llenadoDeTablas();
@@ -93,8 +92,7 @@ int codigoAplicacion=7006;
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
-        setTitle("Mantenimiento Banco Externo");
+        setTitle("Mantenimiento Cines");
         setVisible(true);
 
         btnEliminar.setText("Eliminar");
@@ -119,7 +117,7 @@ int codigoAplicacion=7006;
         });
 
         label1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label1.setText("Bancos Externos");
+        label1.setText("Cines");
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +127,7 @@ int codigoAplicacion=7006;
         });
 
         label3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label3.setText("Nombre Banco");
+        label3.setText("Nombre Cines");
 
         txtNombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -153,7 +151,7 @@ int codigoAplicacion=7006;
         txtPais.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         label5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label5.setText("País del Banco");
+        label5.setText("Descripcion Cines");
 
         jButton2.setText("Ayuda");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +179,7 @@ int codigoAplicacion=7006;
         });
 
         label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label6.setText("Código Banco");
+        label6.setText("Id Cines");
 
         btnReportes.setText("Reportes");
         btnReportes.addActionListener(new java.awt.event.ActionListener() {
@@ -230,7 +228,7 @@ int codigoAplicacion=7006;
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                                     .addComponent(btnReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 50, Short.MAX_VALUE)))
+                        .addGap(0, 59, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -238,9 +236,9 @@ int codigoAplicacion=7006;
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label1)
-                        .addGap(294, 528, Short.MAX_VALUE))
+                        .addGap(294, 581, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
