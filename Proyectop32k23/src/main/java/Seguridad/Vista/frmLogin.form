@@ -151,13 +151,10 @@
     <Component class="javax.swing.JComboBox" name="cboOpciones">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="Bancos"/>
-            <StringItem index="1" value="Compras"/>
-            <StringItem index="2" value="Cuentas Corrientes"/>
-            <StringItem index="3" value="Inventarios"/>
-            <StringItem index="4" value="Seguridad"/>
-            <StringItem index="5" value="Ventas"/>
+          <StringArray count="3">
+            <StringItem index="0" value="Pel&#xed;culas"/>
+            <StringItem index="1" value="Seguridad"/>
+            <StringItem index="2" value=" "/>
           </StringArray>
         </Property>
       </Properties>
