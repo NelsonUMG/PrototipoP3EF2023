@@ -27,7 +27,7 @@ import java.io.File;
  *
  * @author visitante
  */
-public class frmBancoExterno extends javax.swing.JInternalFrame {
+public class frmPeliculasSalas extends javax.swing.JInternalFrame {
     
 int codigoAplicacion=5006;
 
@@ -67,7 +67,7 @@ int codigoAplicacion=5006;
         }       
     }
 
-    public frmBancoExterno() {
+    public frmPeliculasSalas() {
         initComponents();
         llenadoDeTablas();
         llenadoDeCombos();
